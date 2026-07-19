@@ -1,0 +1,848 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="color-scheme" content="dark">
+<title>Mohamed El-Ekhtiar — AEC Software Developer</title>
+<meta name="description" content="Portfolio of Mohamed Ahmed El-Ekhtiar, AEC Software Developer specializing in BIM automation, Revit API, and .NET development.">
+
+<!-- Open Graph & Favicon -->
+<meta property="og:title" content="Mohamed El-Ekhtiar — AEC Software Developer">
+<meta property="og:description" content="Portfolio of Mohamed Ahmed El-Ekhtiar, AEC Software Developer specializing in BIM automation, Revit API, and .NET development.">
+<meta property="og:type" content="website">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>⚡</text></svg>">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=IBM+Plex+Sans:wght@400;500;600&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg: #0A0D12;
+    --bg-panel: #10141C;
+    --bg-raised: #161C28;
+    --hairline: #232B39;
+    --hairline-soft: #1A2029;
+    --text-primary: #ECF1F6;
+    --text-muted: #93A0B2;
+    --text-faint: #5B6577;
+    --cyan: #4FC3F7;
+    --cyan-dim: rgba(79,195,247,0.14);
+    --cyan-glow: rgba(79,195,247,0.35);
+    --amber: #FFA94D;
+    --amber-dim: rgba(255,169,77,0.14);
+    --font-display: 'Space Grotesk', sans-serif;
+    --font-body: 'IBM Plex Sans', sans-serif;
+    --font-mono: 'JetBrains Mono', monospace;
+    --max-w: 1180px;
+  }
+
+  *,*::before,*::after{ box-sizing: border-box; }
+  html{ scroll-behavior: smooth; }
+  
+  ::-webkit-scrollbar { width: 10px; }
+  ::-webkit-scrollbar-track { background: var(--bg); border-left: 1px solid var(--hairline); }
+  ::-webkit-scrollbar-thumb { background: var(--hairline); border: 2px solid var(--bg); border-radius: 5px; }
+  ::-webkit-scrollbar-thumb:hover { background: var(--text-faint); }
+  body{
+    margin:0;
+    background: var(--bg);
+    color: var(--text-primary);
+    font-family: var(--font-body);
+    line-height: 1.65;
+    -webkit-font-smoothing: antialiased;
+    background-image:
+      linear-gradient(rgba(79,195,247,0.035) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(79,195,247,0.035) 1px, transparent 1px);
+    background-size: 28px 28px;
+    overflow-x: hidden;
+  }
+  h1,h2,h3{ font-family: var(--font-display); margin:0; color: var(--text-primary); }
+  p{ margin:0; }
+  a{ color: inherit; text-decoration: none; }
+  ul{ margin:0; padding:0; list-style:none; }
+  img,svg{ display:block; max-width:100%; }
+  section{ scroll-margin-top: 86px; }
+
+  ::selection{ background: var(--cyan-dim); color: var(--text-primary); }
+
+  :focus-visible{ outline: 2px solid var(--cyan); outline-offset: 3px; border-radius: 1px; }
+
+  .top-rule{
+    position: fixed; top:0; left:0; right:0; height: 3px;
+    background: linear-gradient(90deg, var(--cyan), var(--amber));
+    z-index: 1000;
+  }
+
+  .wrap{ max-width: var(--max-w); margin: 0 auto; padding: 0 clamp(20px, 4vw, 48px); }
+
+  .eyebrow{
+    font-family: var(--font-mono);
+    font-size: 0.72rem;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--cyan);
+    margin: 0 0 14px;
+  }
+  .sheet-tag{
+    display:inline-block;
+    font-family: var(--font-mono);
+    font-size: 0.66rem;
+    letter-spacing: 0.1em;
+    color: var(--text-faint);
+    border: 1px solid var(--hairline);
+    padding: 3px 9px;
+    margin-bottom: 22px;
+  }
+
+  /* NAV */
+  .nav{
+    position: fixed; top:3px; left:0; right:0; z-index: 900;
+    background: rgba(10,13,18,0.78);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border-bottom: 1px solid var(--hairline);
+  }
+  .nav__row{
+    max-width: var(--max-w); margin:0 auto; padding: 0 clamp(20px,4vw,48px);
+    height: 64px; display:flex; align-items:center; justify-content:space-between;
+  }
+  .nav__brand{ font-family: var(--font-mono); font-weight:600; font-size:0.86rem; letter-spacing:0.02em; }
+  .nav__brand span{ color: var(--text-faint); font-weight:400; }
+  .nav__links{ display:flex; align-items:center; gap: 28px; }
+  .nav__link{
+    font-family: var(--font-mono); font-size:0.78rem; letter-spacing:0.04em;
+    color: var(--text-muted); text-transform: uppercase; transition: color .2s ease;
+  }
+  .nav__link:hover{ color: var(--cyan); }
+  .nav__cv{
+    font-family: var(--font-mono); font-size:0.72rem; letter-spacing:0.04em;
+    color: var(--text-primary); border:1px solid var(--hairline); padding:8px 14px;
+    text-transform: uppercase; transition: border-color .2s ease, color .2s ease;
+  }
+  .nav__cv:hover{ border-color: var(--cyan); color: var(--cyan); }
+  .nav__toggle{
+    display:none; background:none; border:1px solid var(--hairline); color: var(--text-primary);
+    font-family: var(--font-mono); font-size:0.72rem; letter-spacing:.08em; padding:8px 12px; cursor:pointer;
+  }
+  .nav__mobile{ display:none; }
+
+  @media (max-width: 820px){
+    .nav__links{ display:none; }
+    .nav__cv.desktop-only{ display:none; }
+    .nav__toggle{ display:inline-block; }
+    .nav.is-open .nav__mobile{
+      display:flex; flex-direction:column; gap:2px;
+      background: var(--bg-panel); border-top:1px solid var(--hairline);
+      padding: 10px clamp(20px,4vw,48px) 16px;
+    }
+    .nav__mobile .nav__link, .nav__mobile .nav__cv{ padding: 10px 4px; border:none; text-align:left; }
+  }
+
+  /* HERO */
+  .hero{ padding: 132px 0 64px; }
+  .sheet-frame{
+    position: relative;
+    border: 1px solid var(--hairline);
+    padding: clamp(28px, 5vw, 56px) clamp(20px, 5vw, 56px) 0;
+  }
+  .reg-mark{
+    position:absolute; width:14px; height:14px; pointer-events:none;
+  }
+  .reg-mark::before, .reg-mark::after{ content:''; position:absolute; background: var(--text-faint); }
+  .reg-mark::before{ width:100%; height:1px; top:50%; }
+  .reg-mark::after{ height:100%; width:1px; left:50%; }
+  .reg-mark.tl{ top:-7px; left:-7px; }
+  .reg-mark.tr{ top:-7px; right:-7px; }
+  .reg-mark.bl{ bottom:-7px; left:-7px; }
+  .reg-mark.br{ bottom:-7px; right:-7px; }
+
+  .hero__grid{
+    display:grid; grid-template-columns: 1.05fr 0.95fr; gap: clamp(24px,4vw,56px);
+    align-items:center; padding-bottom: 40px;
+  }
+  .hero__title{
+    font-size: clamp(2rem, 4.4vw, 3.35rem);
+    font-weight: 600; line-height:1.12; letter-spacing:-0.01em;
+    margin-bottom: 20px;
+  }
+  .hero__subtitle{ color: var(--text-muted); font-size: 1.02rem; max-width: 46ch; margin-bottom: 30px; }
+  .hero__actions{ display:flex; gap:14px; flex-wrap:wrap; }
+
+  .btn{
+    font-family: var(--font-mono); font-size:0.78rem; letter-spacing:.04em; text-transform:uppercase;
+    padding: 13px 22px; border:1px solid var(--hairline); display:inline-block; transition: all .3s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+  .btn--primary{ background: var(--cyan); color:#04131B; border-color: var(--cyan); font-weight:600; }
+  .btn--primary:hover{ background: transparent; color: var(--cyan); transform: translateY(-3px); box-shadow: 0 4px 14px var(--cyan-dim); }
+  .btn--ghost{ color: var(--text-primary); }
+  .btn--ghost:hover{ border-color: var(--cyan); color: var(--cyan); transform: translateY(-3px); background: var(--cyan-dim); }
+
+  .hero__illustration{ position:relative; }
+  .hero-svg{ width:100%; height:auto; }
+  .hero-svg .room{ fill:none; stroke: var(--cyan); stroke-width:1.6; stroke-dasharray:880; stroke-dashoffset:0; }
+  .hero-svg .dim-group{ opacity:1; }
+  .hero-svg .dim-line{ stroke: var(--text-faint); stroke-width:1; }
+  .hero-svg .dim-tick{ stroke: var(--text-faint); stroke-width:1; }
+  .hero-svg .dim-text{ font-family: var(--font-mono); font-size:8.5px; fill: var(--text-faint); }
+  .hero-svg .conduit{ opacity:1; fill:none; stroke: var(--cyan); stroke-opacity:.5; stroke-width:1.3; stroke-dasharray:4 4; }
+  .hero-svg .panel{ opacity:1; fill: var(--bg-panel); stroke: var(--text-faint); stroke-width:1.2; }
+  .hero-svg .fixture{ opacity:1; }
+  .hero-svg .fixture circle{ fill: var(--bg-panel); stroke: var(--amber); stroke-width:1.6; }
+  .hero-svg .fixture line{ stroke: var(--amber); stroke-width:1.4; }
+  .hero-svg .heatmap-circle{ opacity:.85; }
+  .hero-svg .polar-plot{ opacity:1; }
+  .hero-svg .polar-plot circle{ fill:none; stroke: var(--hairline); stroke-width:1; }
+  .hero-svg .polar-plot path{ fill:none; stroke: var(--cyan); stroke-width:1.1; }
+  .hero-svg .polar-plot text{ font-family: var(--font-mono); font-size:6.5px; fill: var(--text-faint); }
+  .hero-svg .north-arrow{ opacity:1; }
+  .hero-svg .north-arrow text{ font-family: var(--font-mono); font-size:9px; fill: var(--text-faint); }
+
+  @media (prefers-reduced-motion: no-preference){
+    .hero-svg .room{ animation: drawRoom 1.6s ease-out both; }
+    .hero-svg .dim-group{ animation: fadeIn .5s ease-out 1.4s both; }
+    .hero-svg .conduit{ animation: fadeIn .5s ease-out 1.0s both; }
+    .hero-svg .panel{ animation: fadeIn .4s ease-out .9s both; }
+    .hero-svg .fixture{ animation: fadeIn .4s ease-out 1.6s both; }
+    .hero-svg .heatmap-circle{ animation: fadeInHeat 1.2s ease-out 1.8s both; }
+    .hero-svg .polar-plot{ animation: fadeIn .5s ease-out 2.2s both; }
+    .hero-svg .north-arrow{ animation: fadeIn .4s ease-out .2s both; }
+  }
+  @keyframes drawRoom{ from{ stroke-dashoffset:880; } to{ stroke-dashoffset:0; } }
+  @keyframes fadeIn{ from{ opacity:0; } to{ opacity:1; } }
+  @keyframes fadeInHeat{ from{ opacity:0; } to{ opacity:.85; } }
+
+  .title-block{
+    display:grid; grid-template-columns: repeat(5, 1fr);
+    border-top: 1px solid var(--hairline);
+    margin-top: 8px;
+  }
+  .title-block__cell{ padding: 16px clamp(4px,1.5vw,16px); border-left: 1px solid var(--hairline); }
+  .title-block__cell:first-child{ border-left:none; }
+  .title-block__label{ font-family: var(--font-mono); font-size:0.62rem; letter-spacing:.08em; color: var(--text-faint); text-transform:uppercase; margin-bottom:6px; }
+  .title-block__value{ font-family: var(--font-mono); font-size:0.8rem; color: var(--text-primary); }
+  @media (max-width: 720px){
+    .title-block{ grid-template-columns: repeat(2, 1fr); }
+    .title-block__cell:nth-child(3){ border-left:none; }
+  }
+
+  /* SECTIONS shared */
+  .section{ padding: 96px 0; border-top: 1px solid var(--hairline-soft); }
+  .section__head{ margin-bottom: 48px; max-width: 62ch; }
+  .section__title{ font-size: clamp(1.5rem, 3vw, 2.05rem); font-weight:600; margin-bottom:14px; }
+  .section__intro{ color: var(--text-muted); font-size: 1rem; }
+
+  .reveal{ opacity:0; transform: translateY(18px); transition: opacity .6s ease-out, transform .6s ease-out; }
+  .reveal.in-view{ opacity:1; transform:none; }
+
+  /* ABOUT */
+  .about__body{ display:grid; grid-template-columns: 1.4fr 1fr; gap: 48px; }
+  .about__text{ color: var(--text-muted); font-size:1.03rem; max-width: 58ch; }
+  .about__text strong{ color: var(--text-primary); font-weight:600; }
+  .chips{ display:flex; flex-direction:column; gap:10px; align-self:start; }
+  .chip{
+    font-family: var(--font-mono); font-size:0.74rem; color: var(--text-muted);
+    border:1px solid var(--hairline); padding:10px 14px; letter-spacing:.02em;
+  }
+  .chip b{ color: var(--cyan); font-weight:600; }
+  @media (max-width: 780px){ .about__body{ grid-template-columns: 1fr; } }
+
+  /* WORK */
+  .work__grid{ display:grid; grid-template-columns: repeat(2, 1fr); gap: 22px; }
+  @media (max-width: 780px){ .work__grid{ grid-template-columns: 1fr; } }
+  .card{
+    border: 1px solid var(--hairline); padding: 26px 26px 28px; background: var(--bg-panel);
+    transition: border-color .3s ease, transform .3s ease, box-shadow .3s ease;
+  }
+  .card:hover{ border-color: var(--cyan); transform: translateY(-4px); box-shadow: 0 12px 30px rgba(0,0,0,0.2); }
+  
+  .card__image-wrap{
+    width: 100%;
+    aspect-ratio: 16 / 9;
+    overflow: hidden;
+    margin-bottom: 20px;
+    border: 1px solid var(--hairline);
+    background: var(--bg);
+  }
+  .card__image{
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.5s ease, opacity 0.5s ease;
+    opacity: 0.85;
+    cursor: pointer;
+  }
+  .card:hover .card__image{
+    transform: scale(1.05);
+    opacity: 1;
+  }
+  .card--featured{
+    grid-column: 1 / -1;
+  }
+  .card__gallery{
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 16px;
+  }
+  .card__gallery .card__image-wrap{
+    margin-bottom: 0;
+  }
+  .gallery-group {
+    margin-bottom: 32px;
+  }
+  .gallery-group:last-child {
+    margin-bottom: 16px;
+  }
+  .gallery-group__title {
+    font-family: var(--font-mono);
+    font-size: 0.75rem;
+    letter-spacing: 0.06em;
+    color: var(--cyan);
+    text-transform: uppercase;
+    margin-bottom: 12px;
+    border-bottom: 1px dashed var(--hairline);
+    padding-bottom: 8px;
+  }
+  .card__top{ display:flex; align-items:center; gap:12px; margin-bottom:16px; }
+  .card__code{
+    font-family: var(--font-mono); font-size:0.72rem; color: var(--cyan);
+    border:1px solid var(--cyan-dim); padding: 3px 8px; letter-spacing:.05em;
+  }
+  .card__discipline{ font-family: var(--font-mono); font-size:0.66rem; color: var(--text-faint); text-transform:uppercase; letter-spacing:.08em; }
+  .card__title{ font-size:1.18rem; font-weight:600; margin-bottom:12px; }
+  .card__stack{ font-family: var(--font-mono); font-size:0.72rem; color: var(--amber); margin-bottom:16px; letter-spacing:.02em; }
+  .card__list{ display:flex; flex-direction:column; gap:9px; }
+  .card__list li{ position:relative; padding-left:16px; color: var(--text-muted); font-size:0.92rem; }
+  .card__list li::before{ content:''; position:absolute; left:0; top:9px; width:5px; height:1px; background: var(--text-faint); }
+
+  /* LEGEND */
+  .legend-box{ border:1px solid var(--hairline); }
+  .legend-row{
+    display:grid; grid-template-columns: 240px 1fr; gap: 24px;
+    padding: 20px clamp(18px,3vw,28px); border-top:1px solid var(--hairline-soft);
+  }
+  .legend-row:first-child{ border-top:none; }
+  .legend-row__label{ font-family: var(--font-mono); font-size:0.76rem; letter-spacing:.05em; text-transform:uppercase; color: var(--text-primary); padding-top:4px; }
+  .tag-wrap{ display:flex; flex-wrap:wrap; gap:9px; }
+  .tag{
+    font-family: var(--font-mono); font-size:0.74rem; color: var(--text-muted);
+    border:1px solid var(--hairline); padding: 6px 11px; background: var(--bg-raised);
+  }
+  @media (max-width: 700px){ .legend-row{ grid-template-columns:1fr; gap:10px; } }
+
+  /* TIMELINE */
+  .timeline{ position:relative; padding-left: 28px; }
+  .timeline::before{ content:''; position:absolute; left:5px; top:6px; bottom:6px; width:1px; background: var(--hairline); }
+  .t-item{ position:relative; padding-bottom: 40px; }
+  .t-item:last-child{ padding-bottom:0; }
+  .t-item::before{
+    content:''; position:absolute; left: -28px; top:6px; width:9px; height:9px;
+    background: var(--bg); border:1.5px solid var(--cyan);
+  }
+  .t-date{ font-family: var(--font-mono); font-size:0.72rem; color: var(--cyan); letter-spacing:.04em; margin-bottom:8px; }
+  .t-title{ font-size:1.05rem; font-weight:600; margin-bottom:4px; }
+  .t-org{ font-family: var(--font-mono); font-size:0.78rem; color: var(--text-faint); margin-bottom:10px; }
+  .t-desc{ color: var(--text-muted); font-size:0.92rem; max-width:60ch; }
+
+  /* CONTACT */
+  .contact__top{ display:grid; grid-template-columns: 1fr 1fr; gap: 48px; margin-bottom: 48px; }
+  .contact__text{ color: var(--text-muted); font-size:1.03rem; max-width:52ch; }
+  .contact__buttons{ display:flex; flex-wrap:wrap; gap:12px; align-self:end; }
+  @media (max-width: 780px){ .contact__top{ grid-template-columns:1fr; } .contact__buttons{ justify-content:flex-start; } }
+
+  .contact-block{ display:grid; grid-template-columns: repeat(3, 1fr); border:1px solid var(--hairline); }
+  .contact-block__cell{ padding:18px clamp(14px,2vw,22px); border-left:1px solid var(--hairline); border-top:1px solid var(--hairline); }
+  .contact-block__cell:nth-child(3n+1){ border-left:none; }
+  .contact-block__cell:nth-child(-n+3){ border-top:none; }
+  @media (max-width: 700px){
+    .contact-block{ grid-template-columns: repeat(2,1fr); }
+    .contact-block__cell:nth-child(3n+1){ border-left:1px solid var(--hairline); }
+    .contact-block__cell:nth-child(2n+1){ border-left:none; }
+    .contact-block__cell:nth-child(-n+3){ border-top:1px solid var(--hairline); }
+    .contact-block__cell:nth-child(-n+2){ border-top:none; }
+  }
+  .contact-block__label{ font-family: var(--font-mono); font-size:0.62rem; letter-spacing:.08em; color: var(--text-faint); text-transform:uppercase; margin-bottom:8px; }
+  .contact-block__value{ font-family: var(--font-mono); font-size:0.84rem; color: var(--text-primary); word-break: break-word; }
+  .contact-block__value a:hover{ color: var(--cyan); }
+
+  footer{ border-top:1px solid var(--hairline); padding: 22px 0; }
+  .footer__row{ display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:10px; }
+  .footer__row span{ font-family: var(--font-mono); font-size:0.7rem; color: var(--text-faint); letter-spacing:.04em; }
+
+  /* LIGHTBOX */
+  .lightbox {
+    position: fixed; top: 0; left: 0; right: 0; bottom: 0;
+    background: rgba(10, 13, 18, 0.95);
+    backdrop-filter: blur(5px); -webkit-backdrop-filter: blur(5px);
+    z-index: 2000; display: flex; align-items: center; justify-content: center;
+    opacity: 0; pointer-events: none; transition: opacity 0.3s ease;
+  }
+  .lightbox.is-open { opacity: 1; pointer-events: auto; }
+  .lightbox__img {
+    max-width: 90vw; max-height: 90vh; object-fit: contain;
+    border: 1px solid var(--hairline); box-shadow: 0 20px 50px rgba(0,0,0,0.5);
+  }
+  .lightbox__close {
+    position: absolute; top: 20px; right: 20px;
+    background: transparent; border: none; color: var(--text-muted);
+    font-size: 2.5rem; cursor: pointer; transition: color 0.2s ease;
+  }
+  .lightbox__close:hover { color: var(--cyan); }
+</style>
+</head>
+<body>
+
+<div class="top-rule"></div>
+
+<nav class="nav" id="mainNav">
+  <div class="nav__row">
+    <a href="#home" class="nav__brand">MOHAMED EL-EKHTIAR <span>// AEC.DEV</span></a>
+    <div class="nav__links">
+      <a class="nav__link" href="#work">Work</a>
+      <a class="nav__link" href="#legend">Legend</a>
+      <a class="nav__link" href="#timeline">Timeline</a>
+      <a class="nav__link" href="#contact">Contact</a>
+      <a class="nav__cv desktop-only" href="./Mohamed-Elekhtiar-CV.pdf" target="_blank" rel="noopener">Download CV</a>
+    </div>
+    <button class="nav__toggle" id="navToggle" aria-expanded="false" aria-controls="navMobile">MENU</button>
+  </div>
+  <div class="nav__mobile" id="navMobile">
+    <a class="nav__link" href="#work">Work</a>
+    <a class="nav__link" href="#legend">Legend</a>
+    <a class="nav__link" href="#timeline">Timeline</a>
+    <a class="nav__link" href="#contact">Contact</a>
+    <a class="nav__cv" href="./Mohamed-Elekhtiar-CV.pdf" target="_blank" rel="noopener">Download CV</a>
+  </div>
+</nav>
+
+<main>
+
+  <!-- HERO -->
+  <section id="home" class="hero">
+    <div class="wrap">
+      <div class="sheet-frame">
+        <span class="reg-mark tl"></span><span class="reg-mark tr"></span>
+        <span class="reg-mark bl"></span><span class="reg-mark br"></span>
+
+        <span class="sheet-tag">SHEET 001 / COVER</span>
+
+        <div class="hero__grid">
+          <div>
+            <p class="eyebrow">Portfolio</p>
+            <h1 class="hero__title">AEC Software Developer</h1>
+            <p class="hero__subtitle">Electrical engineer turned .NET developer — Bridging the gap between engineering and code by building custom .NET tools and Revit add-ins that automate complex design tasks.</p>
+            <div class="hero__actions">
+              <a href="#work" class="btn btn--primary">View projects</a>
+              <a href="mailto:mohamedelkhtiar@gmail.com" class="btn btn--ghost">Get in touch</a>
+            </div>
+          </div>
+
+          <div class="hero__illustration">
+            <svg class="hero-svg" viewBox="0 0 420 380" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Animated line drawing of a room floor plan with an electrical panel, conduit routing, a light fixture, and a lux heatmap radiating from it">
+              <defs>
+                <radialGradient id="luxGradient" cx="50%" cy="50%" r="50%">
+                  <stop offset="0%" stop-color="#FFA94D" stop-opacity="0.85"/>
+                  <stop offset="35%" stop-color="#FFA94D" stop-opacity="0.28"/>
+                  <stop offset="65%" stop-color="#4FC3F7" stop-opacity="0.14"/>
+                  <stop offset="100%" stop-color="#4FC3F7" stop-opacity="0"/>
+                </radialGradient>
+              </defs>
+
+              <g class="north-arrow">
+                <path d="M388 16 L393 29 L388 25.5 L383 29 Z" fill="#5B6577"/>
+                <text x="388" y="13" text-anchor="middle">N</text>
+              </g>
+
+              <circle class="heatmap-circle" cx="195" cy="150" r="150" fill="url(#luxGradient)"/>
+
+              <rect class="room" x="70" y="80" width="250" height="190"/>
+
+              <g class="dim-group">
+                <line class="dim-line" x1="70" y1="58" x2="320" y2="58"/>
+                <line class="dim-tick" x1="70" y1="53" x2="70" y2="63"/>
+                <line class="dim-tick" x1="320" y1="53" x2="320" y2="63"/>
+                <text class="dim-text" x="195" y="49" text-anchor="middle">6.20 M</text>
+
+                <line class="dim-line" x1="48" y1="80" x2="48" y2="270"/>
+                <line class="dim-tick" x1="43" y1="80" x2="53" y2="80"/>
+                <line class="dim-tick" x1="43" y1="270" x2="53" y2="270"/>
+                <text class="dim-text" x="30" y="175" text-anchor="middle" transform="rotate(-90 30 175)">4.60 M</text>
+              </g>
+
+              <path class="conduit" d="M91 236 L91 200 L195 200 L195 160"/>
+              <rect class="panel" x="82" y="230" width="18" height="13"/>
+
+              <g class="fixture">
+                <circle cx="195" cy="150" r="9"/>
+                <line x1="188" y1="150" x2="202" y2="150"/>
+                <line x1="195" y1="143" x2="195" y2="157"/>
+              </g>
+
+              <g class="polar-plot" transform="translate(357,318)">
+                <circle r="10"/>
+                <circle r="18"/>
+                <circle r="26"/>
+                <path d="M0 -25 C 14 -20, 16 -6, 0 0 C -16 -6, -14 -20, 0 -25 Z"/>
+                <text y="36" text-anchor="middle">IES 0–180°</text>
+              </g>
+            </svg>
+          </div>
+        </div>
+
+        <div class="title-block">
+          <div class="title-block__cell">
+            <div class="title-block__label">Drawn by</div>
+            <div class="title-block__value">M. A. El-Ekhtiar</div>
+          </div>
+          <div class="title-block__cell">
+            <div class="title-block__label">Discipline</div>
+            <div class="title-block__value">BIM Automation / .NET</div>
+          </div>
+          <div class="title-block__cell">
+            <div class="title-block__label">Location</div>
+            <div class="title-block__value">Cairo, EG</div>
+          </div>
+          <div class="title-block__cell">
+            <div class="title-block__label">Status</div>
+            <div class="title-block__value">ITI — In progress</div>
+          </div>
+          <div class="title-block__cell">
+            <div class="title-block__label">Scale</div>
+            <div class="title-block__value">N.T.S.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ABOUT -->
+  <section id="about" class="section">
+    <div class="wrap">
+      <div class="section__head reveal">
+        <span class="sheet-tag">SHEET 002 / PROFILE</span>
+        <h2 class="section__title">Engineering meets Software.</h2>
+      </div>
+      <div class="about__body">
+        <p class="about__text reveal">
+          I started out in electrical power engineering — load calculations, distribution design, the fundamentals of how a
+          building gets its power. Somewhere along the way I got more interested in <strong>writing the software</strong>
+          that does that work than doing it by hand, and moved into BIM automation and .NET development. Now I build
+          <strong>Revit add-ins, lighting-calculation engines, and shop-drawing automation</strong> — the kind of tools
+          that sit between an engineer's design intent and a set of construction documents. I keep one foot in computer
+          graphics and 3D visualization too, since a surprising amount of good BIM tooling is really a geometry problem
+          in disguise.
+        </p>
+        <div class="chips reveal">
+          <div class="chip"><b>Based in</b> — Cairo, Egypt</div>
+          <div class="chip"><b>Currently</b> — ITI, AEC Informatics Track</div>
+          <div class="chip"><b>Background</b> — B.Sc. Electrical Power &amp; Machines Eng.</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- WORK -->
+  <section id="work" class="section">
+    <div class="wrap">
+      <div class="section__head reveal">
+        <span class="sheet-tag">SHEET 003 / SELECTED WORK</span>
+        <h2 class="section__title">Selected work</h2>
+        <p class="section__intro">BIM tools, graphics experiments, and full-stack apps — shipped or in progress.</p>
+      </div>
+
+      <div class="work__grid">
+        <div class="card card--featured reveal">
+          <div class="gallery-group">
+            <div class="gallery-group__title">1. Lux Heatmap & AVF Visualization</div>
+            <div class="card__gallery">
+              <div class="card__image-wrap"><img class="card__image" src="./Images/HeatMap .png" alt="HeatMap" loading="lazy"></div>
+              <div class="card__image-wrap"><img class="card__image" src="./Images/HeatMap with AVF'.png" alt="HeatMap with AVF" loading="lazy"></div>
+            </div>
+          </div>
+
+          <div class="gallery-group">
+            <div class="gallery-group__title">2. Automated Luminaire Distribution</div>
+            <div class="card__gallery">
+              <div class="card__image-wrap"><img class="card__image" src="./Images/Distripute Luminer with Based on the Engine Lux Analisis.png" alt="Lux Analysis" loading="lazy"></div>
+              <div class="card__image-wrap"><img class="card__image" src="./Images/Distripute _ Luminer Placed in the Model And Hosted.png" alt="Luminaires Hosted" loading="lazy"></div>
+            </div>
+          </div>
+
+          <div class="gallery-group">
+            <div class="gallery-group__title">3. Photometric Data Manager</div>
+            <div class="card__gallery">
+              <div class="card__image-wrap"><img class="card__image" src="./Images/Luminer Manger And Ies Photometric Previewer.png" alt="Luminaire Manager" loading="lazy"></div>
+            </div>
+          </div>
+
+          <div class="gallery-group">
+            <div class="gallery-group__title">4. Conduit & Backbox AutoRouting</div>
+            <div class="card__gallery">
+              <div class="card__image-wrap"><img class="card__image" src="./Images/Backbox And Conduit AutoRouting Setup.png" alt="Backbox Setup" loading="lazy"></div>
+              <div class="card__image-wrap"><img class="card__image" src="./Images/Backbox and Conduit Autorouting Result.png" alt="Autorouting Result" loading="lazy"></div>
+            </div>
+          </div>
+          <div class="card__top">
+            <span class="card__code">E-101</span>
+            <span class="card__discipline">Electrical / BIM</span>
+          </div>
+          <h3 class="card__title">Electrical BIM Automation — Revit Add-in</h3>
+          <div class="card__stack">C# · WPF · Revit API</div>
+          <ul class="card__list">
+            <li>Computational lighting-design engine that automates luminaire placement, lighting calculations, and spatial room analysis.</li>
+            <li>Photometric data extractor parsing IES files into polar intensity plots and real-time Lux heatmaps via Revit's AVF.</li>
+            <li>Shop-drawing automation that places back boxes, routes conduits, and generates dimensions, circuit tags, and documentation sheets.</li>
+          </ul>
+        </div>
+
+        <div class="card reveal">
+          <div class="card__top">
+            <span class="card__code">G-201</span>
+            <span class="card__discipline">Graphics / Computational</span>
+          </div>
+          <h3 class="card__title">Galaxy Scene Simulation</h3>
+          <div class="card__stack">C++ · OpenGL</div>
+          <ul class="card__list">
+            <li>Interactive 3D galaxy simulation built with modern OpenGL — shaders, textures, and real-time rendering.</li>
+            <li>Camera movement, object transformations, hierarchical modeling, and orbital motion via transformation matrices.</li>
+          </ul>
+        </div>
+
+        <div class="card reveal">
+          <div class="card__top">
+            <span class="card__code">W-301</span>
+            <span class="card__discipline">Web</span>
+          </div>
+          <h3 class="card__title">E-Commerce Web Application</h3>
+          <div class="card__stack">ASP.NET MVC · Entity Framework · SQL Server</div>
+          <ul class="card__list">
+            <li>Product, customer, and order-management workflows on an MVC architecture with EF models and a relational SQL Server schema.</li>
+            <li>Multi-tier auth with ASP.NET Identity — separate Admin, Vendor, and Customer roles securing checkout and dashboard routes.</li>
+          </ul>
+        </div>
+
+        <div class="card reveal">
+          <div class="card__top">
+            <span class="card__code">D-401</span>
+            <span class="card__discipline">Desktop</span>
+          </div>
+          <h3 class="card__title">Construction Material Manager</h3>
+          <div class="card__stack">C# · WPF · MVVM</div>
+          <ul class="card__list">
+            <li>Desktop application for managing construction materials with CRUD flows and organized data-management workflows.</li>
+            <li>Built on MVVM with data binding and commands for a maintainable WPF interface.</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- LEGEND (skills) -->
+  <section id="legend" class="section">
+    <div class="wrap">
+      <div class="section__head reveal">
+        <span class="sheet-tag">SHEET 004 / LEGEND</span>
+        <h2 class="section__title">Legend</h2>
+        <p class="section__intro">Symbols and abbreviations used throughout this set.</p>
+      </div>
+
+      <div class="legend-box reveal">
+        <div class="legend-row">
+          <div class="legend-row__label">Programming &amp; Software</div>
+          <div class="tag-wrap">
+            <span class="tag">C</span><span class="tag">C#</span><span class="tag">C++</span>
+            <span class="tag">JavaScript</span><span class="tag">OOP</span><span class="tag">Data Structures</span>
+            <span class="tag">.NET</span><span class="tag">WPF (MVVM)</span><span class="tag">LINQ</span>
+          </div>
+        </div>
+        <div class="legend-row">
+          <div class="legend-row__label">Databases &amp; Web</div>
+          <div class="tag-wrap">
+            <span class="tag">SQL Server</span><span class="tag">ADO.NET</span><span class="tag">Entity Framework</span>
+            <span class="tag">ASP.NET MVC</span><span class="tag">HTML5</span><span class="tag">CSS3</span>
+          </div>
+        </div>
+        <div class="legend-row">
+          <div class="legend-row__label">AEC &amp; BIM</div>
+          <div class="tag-wrap">
+            <span class="tag">AutoCAD</span><span class="tag">Revit</span><span class="tag">Revit API</span>
+            <span class="tag">Dynamo</span><span class="tag">Revit MEP</span>
+          </div>
+        </div>
+        <div class="legend-row">
+          <div class="legend-row__label">GIS &amp; Mapping</div>
+          <div class="tag-wrap">
+            <span class="tag">ArcGIS Pro</span><span class="tag">ArcGIS Online</span>
+          </div>
+        </div>
+        <div class="legend-row">
+          <div class="legend-row__label">3D &amp; Visualization</div>
+          <div class="tag-wrap">
+            <span class="tag">OpenGL</span><span class="tag">Three.js</span>
+          </div>
+        </div>
+        <div class="legend-row">
+          <div class="legend-row__label">Tools</div>
+          <div class="tag-wrap">
+            <span class="tag">Git / GitHub</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- TIMELINE -->
+  <section id="timeline" class="section">
+    <div class="wrap">
+      <div class="section__head reveal">
+        <span class="sheet-tag">SHEET 005 / SCHEDULE</span>
+        <h2 class="section__title">Timeline</h2>
+      </div>
+
+      <div class="timeline">
+        <div class="t-item reveal">
+          <div class="t-date">OCT 2025 — IN PROGRESS</div>
+          <div class="t-title">AEC Informatics Track</div>
+          <div class="t-org">Information Technology Institute (ITI) · Smart Village, Egypt</div>
+          <p class="t-desc">9-month professional diploma focused on Architecture, Engineering, and Construction informatics.</p>
+        </div>
+        <div class="t-item reveal">
+          <div class="t-date">2016 — 2023</div>
+          <div class="t-title">B.Sc. Electrical Power &amp; Machines Engineering</div>
+          <div class="t-org">Mansoura University · Mansoura, Egypt</div>
+          <p class="t-desc">Graduation project on a stand-alone photovoltaic (PV) system — load estimation and PV component sizing.</p>
+        </div>
+        <div class="t-item reveal">
+          <div class="t-date">JUL 2022 — OCT 2022</div>
+          <div class="t-title">Electrical Design Course</div>
+          <div class="t-org">Eng. Mohamed Emam · Electrical Distribution Diploma</div>
+          <p class="t-desc">Full design project for a call center: lighting design in Dialux Evo, small power systems, panel schedules, cable selection, SLD preparation, transformer/generator/UPS sizing, and earthing &amp; lightning protection.</p>
+        </div>
+        <div class="t-item reveal">
+          <div class="t-date">AUG 2021 — SEP 2021</div>
+          <div class="t-title">Summer Trainee — Power Station</div>
+          <div class="t-org">Misr Spinning &amp; Weaving Company</div>
+          <p class="t-desc">Observed power-station operations and distribution workflows; studied control, protection, and equipment-monitoring procedures.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section id="contact" class="section">
+    <div class="wrap">
+      <div class="section__head reveal">
+        <span class="sheet-tag">SHEET 006 / TITLE BLOCK</span>
+        <h2 class="section__title">Let's talk</h2>
+      </div>
+
+      <div class="contact__top">
+        <p class="contact__text reveal">Open to AEC software, BIM automation, and .NET development roles — Cairo-based and open to remote work.</p>
+        <div class="contact__buttons reveal">
+          <a class="btn btn--primary" href="mailto:mohamedelkhtiar@gmail.com">Email</a>
+          <a class="btn btn--ghost" href="tel:+201098329967">Call</a>
+          <a class="btn btn--ghost" href="https://www.linkedin.com/in/mohamed-elekhtiar/" target="_blank" rel="noopener">LinkedIn</a>
+          <a class="btn btn--ghost" href="https://github.com/Mohamed-Elkhtiar" target="_blank" rel="noopener">GitHub</a>
+        </div>
+      </div>
+
+      <div class="contact-block reveal">
+        <div class="contact-block__cell">
+          <div class="contact-block__label">Name</div>
+          <div class="contact-block__value">Mohamed Ahmed El-Ekhtiar</div>
+        </div>
+        <div class="contact-block__cell">
+          <div class="contact-block__label">Location</div>
+          <div class="contact-block__value">Cairo, Egypt</div>
+        </div>
+        <div class="contact-block__cell">
+          <div class="contact-block__label">Phone</div>
+          <div class="contact-block__value"><a href="tel:+201098329967">+20 109 832 9967</a></div>
+        </div>
+        <div class="contact-block__cell">
+          <div class="contact-block__label">Email</div>
+          <div class="contact-block__value"><a href="mailto:mohamedelkhtiar@gmail.com">mohamedelkhtiar@gmail.com</a></div>
+        </div>
+        <div class="contact-block__cell">
+          <div class="contact-block__label">LinkedIn</div>
+          <div class="contact-block__value"><a href="https://www.linkedin.com/in/mohamed-elekhtiar/" target="_blank" rel="noopener">/in/mohamed-elekhtiar</a></div>
+        </div>
+        <div class="contact-block__cell">
+          <div class="contact-block__label">GitHub</div>
+          <div class="contact-block__value"><a href="https://github.com/Mohamed-Elkhtiar" target="_blank" rel="noopener">/Mohamed-Elkhtiar</a></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <div class="wrap footer__row">
+    <span>© 2026 M. EL-EKHTIAR</span>
+    <span>REV 01</span>
+  </div>
+</footer>
+
+<!-- LIGHTBOX -->
+<div class="lightbox" id="lightbox">
+  <button class="lightbox__close" id="lightboxClose" aria-label="Close image">×</button>
+  <img class="lightbox__img" id="lightboxImg" src="" alt="Enlarged image">
+</div>
+
+<script>
+  // Mobile nav toggle
+  var navEl = document.getElementById('mainNav');
+  var toggleBtn = document.getElementById('navToggle');
+  toggleBtn.addEventListener('click', function(){
+    var isOpen = navEl.classList.toggle('is-open');
+    toggleBtn.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+  });
+  document.querySelectorAll('.nav__mobile a').forEach(function(link){
+    link.addEventListener('click', function(){
+      navEl.classList.remove('is-open');
+      toggleBtn.setAttribute('aria-expanded', 'false');
+    });
+  });
+
+  // Scroll reveal, only when motion is not reduced
+  var prefersNoMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  if (!prefersNoMotion && 'IntersectionObserver' in window) {
+    var observer = new IntersectionObserver(function(entries){
+      entries.forEach(function(entry){
+        if (entry.isIntersecting) {
+          entry.target.classList.add('in-view');
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.15, rootMargin: '0px 0px -40px 0px' });
+    document.querySelectorAll('.reveal').forEach(function(el){ observer.observe(el); });
+  } else {
+    document.querySelectorAll('.reveal').forEach(function(el){ el.classList.add('in-view'); });
+  }
+
+  // Lightbox
+  var lightbox = document.getElementById('lightbox');
+  var lightboxImg = document.getElementById('lightboxImg');
+  var lightboxClose = document.getElementById('lightboxClose');
+
+  document.querySelectorAll('.card__image').forEach(function(img) {
+    img.addEventListener('click', function() {
+      lightboxImg.src = this.src;
+      lightbox.classList.add('is-open');
+    });
+  });
+
+  lightboxClose.addEventListener('click', function() {
+    lightbox.classList.remove('is-open');
+  });
+
+  lightbox.addEventListener('click', function(e) {
+    if (e.target === lightbox) {
+      lightbox.classList.remove('is-open');
+    }
+  });
+</script>
+
+</body>
+</html>
